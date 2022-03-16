@@ -1,3 +1,4 @@
+import "./core/components_use";
 import HTable from './HTable/index.vue';
 
 const components = [HTable];

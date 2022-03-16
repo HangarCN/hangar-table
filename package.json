@@ -1,6 +1,8 @@
 {
   "name": "hangar-table",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "private": true,
   "version": "0.0.0",
   "module": "./dist/vite-lib.es.js",
@@ -20,6 +22,8 @@
     "vite": "^2.8.0"
   },
   "dependencies": {
+    "ant-design-vue": "^1.7.8",
+    "esbuild-windows-64": "^0.14.27",
     "vite-plugin-vue2": "^1.9.3",
     "vue": "^2.6.10",
     "vue-router": "^3.5.3",
