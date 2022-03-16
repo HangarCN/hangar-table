@@ -1,11 +1,20 @@
 {
   "name": "hangar-table",
+  "files": ["dist"],
   "private": true,
   "version": "0.0.0",
+  "module": "./dist/vite-lib.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vite-lib.es.js",
+      "require": "./dist/vite-lib.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lib": "vite build --target lib"
   },
   "devDependencies": {
     "vite": "^2.8.0"

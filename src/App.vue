@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <router-view />
+    <Table />
   </div>
 </template>
 
 <script>
+import Table from '../packages/HTable/index.vue'
 export default {
   name: 'App',
   props: {},
-  components: {},
+  components: {
+    Table
+  },
   watch: {},
   data() {
     return {}
