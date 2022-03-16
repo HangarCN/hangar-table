@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: 'index',
+  name: 'h-table',
+  install: function(Vue) {
+    Vue.component(this.name, this);
+  },
   props: {},
   components: {},
   watch: {},

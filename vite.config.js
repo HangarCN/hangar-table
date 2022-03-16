@@ -1,6 +1,16 @@
 import { createVuePlugin } from 'vite-plugin-vue2'
 
 export default {
+  pages: {
+    index: {
+      // 页面入口
+      entry: 'src/main.js',
+      // 模板来源
+      template: 'index.html',
+      // 输出文件名
+      filename: 'index.html'
+    }
+  },
   // 打包配置
   build: {
     lib: {
