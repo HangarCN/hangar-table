@@ -12,50 +12,25 @@ import { clone } from 'lodash';
 import { Descriptions } from 'ant-design-vue';
 import { DescriptionsItem } from 'ant-design-vue/es/descriptions';
 
-import { DefaultFormJson } from '../../KFormDesign/config/defaultFromJson';
-import EditCell from './components/editCell';
-
 export default {
   name: 'HTable',
-  model: {
-    prop: 'dataSource',
-    event: 'input'
-  },
   components: {
     'a-descriptions': Descriptions,
     'a-descriptions-item': DescriptionsItem,
-    'edit-cell': EditCell
   },
   data() {
     return {
       localDataSource: this.dataSource,
       localPagination: this.pagination,
       tableColumns: clone(TColumn.props),
-      localColumns: this.columns,
-      formJson: DefaultFormJson,
-      editForm: {},
-      modelVisible: false,
-      detailModelVisible: false,
-      detailList: [],
-      editRowIndex: 1
+      localColumns: this.columns || []
     };
   },
-  /*install: function(Vue) {
-    Vue.component('h-table', this);
-  },*/
   props: Object.assign({}, T.props, {
     pagination: {
       type: [Object, Boolean],
-      default: false
-    },
-    disabled: {
-      type: [String, Boolean],
-      default: false
-    },
-    handleAdd: {
-      type: Boolean,
       default: true
-    }
+    },
   }),
   watch: {
     dataSource(val) {
@@ -70,19 +45,15 @@ export default {
           this.tableColumns[key] && (item[key] = this.tableColumns[key]);
         });
       })*/
-      this.localColumns = val;
+      this.localColumns = val || [];
     }
   },
-  computed: {
-    modalTitle() {
-      return typeof this.editForm.index !== 'undefined' ? '编辑' : '新增';
-    }
-  },
+  computed: {},
   methods: {
     renderColumn() {
       const scopedSlots = {};
       const _this = this;
-      this.columns.forEach(item => {
+      this.localColumns.forEach(item => {
         if (item.type === 'index') {
           scopedSlots[item.scopedSlots.customRender] = function(props, record, index) {
             return <span slot={item.scopedSlots.customRender}>{index + 1}</span>;
@@ -133,7 +104,7 @@ export default {
         extendConfigs: [],
         disabled: false
       };
-      canEditFiled = this.columns.map(col => {
+      canEditFiled = this.localColumns.map(col => {
         return {
           ...col.filedOptions,
           dataId: 'editForm'
@@ -236,7 +207,7 @@ export default {
     },
     renderEditCell() {
       const scopedSlots = {};
-      const editCell = this.columns.filter(col => {
+      const editCell = this.localColumns.filter(col => {
         return col.editable;
       });
       editCell.forEach(cell => {

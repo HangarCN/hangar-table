@@ -30,7 +30,7 @@ export default {
       }
     }
   },
-  plugins: [createVuePlugin()],
+  plugins: [createVuePlugin({ jsx: true })],
   css: {
     preprocessorOptions: {
       less: {
